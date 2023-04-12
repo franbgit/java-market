@@ -19,10 +19,10 @@ public class Purchase {
     private LocalDateTime date;
 
     @Column(name = "half_pay")
-    private String halfPay;
+    private Character halfPay;
 
     private String commentary;
-    private String state;
+    private Character state;
 
     @ManyToOne
     @JoinColumn(name = "id_customer", insertable = false, updatable = false)
@@ -55,11 +55,11 @@ public class Purchase {
         this.date = date;
     }
 
-    public String getHalfPay() {
+    public Character getHalfPay() {
         return halfPay;
     }
 
-    public void setHalfPay(String halfPay) {
+    public void setHalfPay(Character halfPay) {
         this.halfPay = halfPay;
     }
 
@@ -71,11 +71,11 @@ public class Purchase {
         this.commentary = commentary;
     }
 
-    public String getState() {
+    public Character getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(Character state) {
         this.state = state;
     }
 

@@ -2,12 +2,10 @@ package com.platzi.market.domain.service;
 
 import com.platzi.market.domain.ProductDTO;
 import com.platzi.market.domain.repository.ProductDTORepository;
-import com.platzi.market.persistence.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,9 +38,15 @@ public class ProductService {
 //        } else {
 //            return true;
 //        }
-        return getProduct(productId).map(productDTO -> {
+//        return getProduct(productId).map(productDTO -> {
+//            productDTORepository.delete(productId);
+//            return true;
+//        }).orElse(false);
+        try {
             productDTORepository.delete(productId);
             return true;
-        }).orElse(false);
+        } catch (EmptyResultDataAccessException e) {
+            return false;
+        }
     }
 }

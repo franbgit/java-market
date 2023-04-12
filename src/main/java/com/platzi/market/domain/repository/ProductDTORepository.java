@@ -11,5 +11,5 @@ public interface ProductDTORepository {
     Optional<List<ProductDTO>> getScarseProduct(int quantity);
     Optional<ProductDTO> getProduct(int productId);
     ProductDTO save(ProductDTO productDTO);
-    void delete (int productId);
+    void delete(int productId);
 }

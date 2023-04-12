@@ -1,6 +1,5 @@
 package com.platzi.market.persistence.crud;
 
-import com.platzi.market.domain.PurchaseDTO;
 import com.platzi.market.persistence.entity.Purchase;
 import org.springframework.data.repository.CrudRepository;
 

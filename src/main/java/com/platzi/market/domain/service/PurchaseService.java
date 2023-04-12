@@ -2,7 +2,6 @@ package com.platzi.market.domain.service;
 
 import com.platzi.market.domain.PurchaseDTO;
 import com.platzi.market.domain.repository.PurchaseDTORepository;
-import com.platzi.market.persistence.crud.PurchaseCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

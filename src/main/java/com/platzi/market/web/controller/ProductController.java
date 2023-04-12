@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 @RestController
 @RequestMapping("/products")
@@ -39,7 +40,7 @@ public class ProductController {
 
     @GetMapping("/category/{id}")
     public ResponseEntity<List<ProductDTO>> getByCategory(@PathVariable("id") int categoryId) {
-        return productService.getByCategory(categoryId)
+        return productService.getByCategory(categoryId).filter(Predicate.not(List::isEmpty))
                 .map(productDTOS -> new ResponseEntity<>(productDTOS, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 //        return productService.getByCategory(categoryId);

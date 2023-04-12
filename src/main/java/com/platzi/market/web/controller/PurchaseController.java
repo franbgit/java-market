@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 @RestController
 @RequestMapping("/purchases")
@@ -22,7 +23,7 @@ public class PurchaseController {
 
     @GetMapping("/{id}")
     public ResponseEntity<List<PurchaseDTO>> getByClientId(@PathVariable("id") String clientId) {
-        return purchaseService.getByClient(clientId)
+        return purchaseService.getByClient(clientId).filter(Predicate.not(List::isEmpty))
                 .map(purchaseDTOS -> new ResponseEntity<>(purchaseDTOS, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }

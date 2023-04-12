@@ -6,10 +6,8 @@ import com.platzi.market.persistence.crud.ProductCrudRepository;
 import com.platzi.market.persistence.entity.Product;
 import com.platzi.market.persistence.mapper.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,13 +55,6 @@ public class ProductRepository implements ProductDTORepository {
 
     public Optional<ProductDTO> getProduct(int productId) {
         return productCrudRepository.findById(productId).map(product -> {
-//            System.out.println("product " + product.getProductId());
-//            System.out.println("product " + product.getName());
-//            System.out.println("product " + product.getCategoryId());
-//            System.out.println("product " + product.getPrice());
-//            System.out.println("product " + product.getStockQuantity());
-//            System.out.println("product " + product.getState());
-//            System.out.println("product " + product.getCategory().getCategoryId());
             return mapper.toProduct(product);
         });
     }
@@ -75,14 +66,6 @@ public class ProductRepository implements ProductDTORepository {
     @Override
     public ProductDTO save(ProductDTO productDTO) {
         Product product = mapper.toInverseProduct(productDTO);
-//        System.out.println("product " + product.getProductId());
-//        System.out.println("product " + product.getName());
-//        System.out.println("product " + product.getCategoryId());
-//        System.out.println("product " + product.getPrice());
-//        System.out.println("product " + product.getStockQuantity());
-//        System.out.println("product " + product.getState());
-//        System.out.println("product " + product.getCategory().getCategoryId());
-//        return productDTO;
         return mapper.toProduct(productCrudRepository.save(product));
     }
 
