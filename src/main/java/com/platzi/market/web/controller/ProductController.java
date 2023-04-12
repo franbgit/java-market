@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/products")
@@ -18,7 +17,7 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/all")
-    @ApiOperation("Get all supermarket products")
+    @ApiOperation(value = "Get all supermarket products", authorizations = {@Authorization(value = "JWT")})
     @ApiResponse(code = 200, message = "OK")
     public ResponseEntity<List<ProductDTO>> getAll() {
         return new ResponseEntity<>(productService.getAll(), HttpStatus.OK);
@@ -28,8 +27,8 @@ public class ProductController {
     @GetMapping("/{id}")
     @ApiOperation("Search a product with an ID")
     @ApiResponses({
-        @ApiResponse(code = 200, message = "OK"),
-        @ApiResponse(code = 400, message = "Product not found"),
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 400, message = "Product not found"),
     })
     public ResponseEntity<ProductDTO> getProduct(@ApiParam(value = "The id of the product", required = true, example = "7") @PathVariable("id") int productId) {
         return productService.getProduct(productId)
